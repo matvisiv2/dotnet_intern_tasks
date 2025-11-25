@@ -13,6 +13,7 @@ namespace dotnet_intern_tasks
                 Print("Choose option:\n");
                 Print("1. Task_01_Temperature_Converter;\n");
                 Print("2. Task_02_Age_Check;\n");
+                Print("3. Task_03_Multiplication_Table;\n");
                 Print("c. Clear console;\n");
                 Print("e. Exit;\n\n");
 
@@ -34,6 +35,10 @@ namespace dotnet_intern_tasks
                     case '2':
                         Print(Fit_Title("Task_02_Age_Check"));
                         Task_Cycle(Task_02_Age_Check);
+                        break;
+                    case '3':
+                        Print(Fit_Title("Task_03_Multiplication_Table"));
+                        Task_Cycle(Task_03_Multiplication_Table);
                         break;
                     case 'c':
                         Console.Clear();
@@ -91,6 +96,19 @@ namespace dotnet_intern_tasks
             }
 
             return $"Person with age {age} years is {age_group}. {info}\n";
+        }
+
+        public static string Task_03_Multiplication_Table(string input_value)
+        {
+            int num = Convert.ToInt32(input_value);
+            string res = "";
+
+            for (short i = 1; i <= 10; i++)
+            {
+                res += $"{num} x {i} = {num * i}\n";
+            }
+
+            return res + '\n';
         }
 
         public static void Task_Cycle(Func<string, string> function)

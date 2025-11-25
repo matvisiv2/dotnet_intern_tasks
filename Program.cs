@@ -7,34 +7,42 @@ namespace dotnet_intern_tasks
         static void Main()
         {
             Task_01_Temperature_Converter();
-            Delay();
+
+            // Delay();
+            Print("Exit...");
         }
 
         public static void Task_01_Temperature_Converter()
         {
             Print(Fit_Title("Task_01_Temperature_Converter"));
 
-            float t_celsium = float.MaxValue;
-            bool incorrect_value = false;
+            string input_data;
+            double t_celsium;
+            double t_fahrenheit;
+
             do
             {
-                Print("Enter the temperature in degrees Celsius: ");
+                Print("Enter the temperature in degrees Celsius (or 'e' to exit): ");
                 try
                 {
-                    t_celsium = float.TryParse(Console.ReadLine(), out t_celsium) ? t_celsium : float.MaxValue;
-                    incorrect_value = t_celsium >= float.MaxValue;
-                    if (incorrect_value)
+                    input_data = Console.ReadLine() ?? "";
+
+                    if (string.Compare(input_data, "e") == 0)
                     {
-                        throw new Exception();
+                        break;
                     }
-                    float t_fahrenheit = (t_celsium * 9 / 5) + 32;
+
+                    t_celsium = Convert.ToDouble(input_data);
+
+                    t_fahrenheit = (t_celsium * 9 / 5) + 32;
+
                     Print($"Temperature in Fahrenheit is: {t_fahrenheit}\n");
                 }
                 catch
                 {
                     Print("Incorrect value. Try again.\n");
                 }
-            } while (incorrect_value);
+            } while (true);
         }
 
         public static void Print(string s)

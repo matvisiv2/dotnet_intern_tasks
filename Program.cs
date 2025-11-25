@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace dotnet_intern_tasks
 {
@@ -14,6 +15,7 @@ namespace dotnet_intern_tasks
                 Print("1. Task_01_Temperature_Converter;\n");
                 Print("2. Task_02_Age_Check;\n");
                 Print("3. Task_03_Multiplication_Table;\n");
+                Print("4. Task_04_Sum_Of_Numbers_In_Range;\n");
                 Print("c. Clear console;\n");
                 Print("e. Exit;\n\n");
 
@@ -42,6 +44,12 @@ namespace dotnet_intern_tasks
                         Print(Fit_Title("Task_03_Multiplication_Table"));
                         Print("Tip: You need to enter some number to see its multiplication table.\n");
                         Task_Cycle(Task_03_Multiplication_Table);
+                        break;
+                    case '4':
+                        Print(Fit_Title("Task_04_Sum_Of_Numbers_In_Range"));
+                        Print("Tip: You need to enter two numbers separated by a comme sign to see the sum in their range.\n");
+                        Print("Tip: start value must be less than end value.\n");
+                        Task_Cycle(Task_04_Sum_Of_Numbers_In_Range);
                         break;
                     case 'c':
                         Console.Clear();
@@ -112,6 +120,24 @@ namespace dotnet_intern_tasks
             }
 
             return res + '\n';
+        }
+
+        public static string Task_04_Sum_Of_Numbers_In_Range(string input_value)
+        {
+            Regex regex = new Regex(@"^\s*(-?\d+)\s*,\s*(-?\d+)\s*$");
+            Match match = regex.Match(input_value);
+
+            int start = int.Parse(match.Groups[1].Value);
+            int end = int.Parse(match.Groups[2].Value);
+
+            if (start >= end)
+            {
+                throw new Exception();
+            }
+
+            int[] range = Enumerable.Range(start, end - start + 1).ToArray();
+
+            return $"sum({start}, {end}) = {range.Sum()}\n";
         }
 
         public static void Task_Cycle(Func<string, string> function)

@@ -30,14 +30,17 @@ namespace dotnet_intern_tasks
                 {
                     case '1':
                         Print(Fit_Title("Task_01_Temperature_Converter(Celsius to Fahrenheit)"));
+                        Print("Tip: You need to enter the temperature in Celsius to convert it to Fahrenheit.");
                         Task_Cycle(Task_01_Temperature_Converter);
                         break;
                     case '2':
                         Print(Fit_Title("Task_02_Age_Check"));
+                        Print("Tip: You need to enter an age to see which age group the person belongs to.");
                         Task_Cycle(Task_02_Age_Check);
                         break;
                     case '3':
                         Print(Fit_Title("Task_03_Multiplication_Table"));
+                        Print("Tip: You need to enter some number to see its multiplication table.");
                         Task_Cycle(Task_03_Multiplication_Table);
                         break;
                     case 'c':

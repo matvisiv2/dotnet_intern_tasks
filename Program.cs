@@ -28,12 +28,10 @@ namespace dotnet_intern_tasks
                 switch (option[0])
                 {
                     case '1':
-                        // Task_01_Temperature_Converter();
-                        Print(Fit_Title("Task_01_Temperature_Converter"));
+                        Print(Fit_Title("Task_01_Temperature_Converter(Celsius to Fahrenheit)"));
                         Task_Cycle(Task_01_Temperature_Converter);
                         break;
                     case '2':
-                        // Task_02_Age_Check();
                         Print(Fit_Title("Task_02_Age_Check"));
                         Task_Cycle(Task_02_Age_Check);
                         break;
@@ -52,40 +50,6 @@ namespace dotnet_intern_tasks
             Print("Exit...");
         }
 
-        // public static void Task_01_Temperature_Converter()
-        // {
-        //     Print(Fit_Title("Task_01_Temperature_Converter"));
-
-        //     string input_value;
-        //     double t_celsium;
-        //     double t_fahrenheit;
-
-        //     do
-        //     {
-        //         Print("Enter the temperature in degrees Celsius (or 'e' to exit): ");
-        //         try
-        //         {
-        //             input_value = Console.ReadLine() ?? "";
-
-        //             if (string.Compare(input_value, "e") == 0)
-        //             {
-        //                 Print("Back to main menu...\n");
-        //                 break;
-        //             }
-
-        //             t_celsium = Convert.ToDouble(input_value);
-
-        //             t_fahrenheit = (t_celsium * 9 / 5) + 32;
-
-        //             Print($"Temperature in Fahrenheit is: {t_fahrenheit}\n");
-        //         }
-        //         catch
-        //         {
-        //             Print("Incorrect value. Try again.\n");
-        //         }
-        //     } while (true);
-        // }
-
         public static string Task_01_Temperature_Converter(string input_value)
         {
             double t_celsium;
@@ -95,7 +59,7 @@ namespace dotnet_intern_tasks
 
             t_fahrenheit = (t_celsium * 9 / 5) + 32;
 
-            return $"Temperature in Fahrenheit is: {t_fahrenheit}\n";
+            return $"{t_celsium}C{(char)176} = {t_fahrenheit}F{(char)176}\n";
         }
 
         public static string Task_02_Age_Check(string input_value)

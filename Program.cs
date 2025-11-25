@@ -6,7 +6,42 @@ namespace dotnet_intern_tasks
     {
         static void Main()
         {
-            Task_01_Temperature_Converter();
+            string option;
+            do
+            {
+                Print(Fit_Title("Main menu"));
+                Print("Choose option:\n");
+                Print("1. Task_01_Temperature_Converter;\n");
+                Print("2. Task_02_Age_Check;\n");
+                Print("c. Clear console;\n");
+                Print("e. Exit;\n\n");
+                
+                Print("Enter your choice: ");
+
+                option = Console.ReadLine() ?? "";
+
+                if(option.Length > 1)
+                {
+                    option = "i";
+                }
+
+                switch (option[0])
+                {
+                    case '1':
+                        Task_01_Temperature_Converter();
+                        break;
+                    case '2':
+                        Task_02_Age_Check();
+                        break;
+                    case 'c':
+                        Console.Clear();
+                        break;
+                    case 'i':
+                    default:
+                        Print("Incorrect input. Try again.\n");
+                        break;
+                }
+            } while (option[0] != 'e');
 
             // Delay();
             Print("Exit...");
@@ -29,6 +64,7 @@ namespace dotnet_intern_tasks
 
                     if (string.Compare(input_data, "e") == 0)
                     {
+                        Print("Back to main menu...\n");
                         break;
                     }
 
@@ -43,6 +79,11 @@ namespace dotnet_intern_tasks
                     Print("Incorrect value. Try again.\n");
                 }
             } while (true);
+        }
+
+        public static void Task_02_Age_Check()
+        {
+
         }
 
         public static void Print(string s)

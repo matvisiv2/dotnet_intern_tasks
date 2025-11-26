@@ -1,2 +1,2 @@
-# dotnet_intern_tasks
+# dotnetInternTasks
 dotnet intern tasks

@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace dotnet_intern_tasks
+namespace dotnetInternTasks
 {
     class Program
     {
         static void Main()
         {
-            string menu_info =
-                "1. Task_01_Temperature_Converter;\n" +
-                "2. Task_02_Age_Check;\n" +
-                "3. Task_03_Multiplication_Table;\n" +
-                "4. Task_04_Sum_Of_Numbers_In_Range;\n" +
+            string menuInfo =
+                "1. Task01TemperatureConverter;\n" +
+                "2. Task02AgeCheck;\n" +
+                "3. Task03MultiplicationTable;\n" +
+                "4. Task04SumOfNumbersInRange;\n" +
                 "c. Clear console;\n" +
                 "e. Exit;\n";
 
@@ -19,8 +19,8 @@ namespace dotnet_intern_tasks
 
             do
             {
-                Print(Fit_Title("Main menu"));
-                Print(menu_info);
+                Print(FitTitle("Main menu"));
+                Print(menuInfo);
 
                 Print("Enter your choice: ");
 
@@ -34,25 +34,25 @@ namespace dotnet_intern_tasks
                 switch (option[0])
                 {
                     case '1':
-                        Print(Fit_Title("Task_01_Temperature_Converter(Celsius to Fahrenheit)"));
+                        Print(FitTitle("Task01TemperatureConverter(Celsius to Fahrenheit)"));
                         Print("Tip: You need to enter the temperature in Celsius to convert it to Fahrenheit.\n");
-                        Task_Cycle(Task_01_Temperature_Converter);
+                        TaskCycle(Task01TemperatureConverter);
                         break;
                     case '2':
-                        Print(Fit_Title("Task_02_Age_Check"));
+                        Print(FitTitle("Task02AgeCheck"));
                         Print("Tip: You need to enter an age to see which age group the person belongs to.\n");
-                        Task_Cycle(Task_02_Age_Check);
+                        TaskCycle(Task02AgeCheck);
                         break;
                     case '3':
-                        Print(Fit_Title("Task_03_Multiplication_Table"));
+                        Print(FitTitle("Task03MultiplicationTable"));
                         Print("Tip: You need to enter some number to see its multiplication table.\n");
-                        Task_Cycle(Task_03_Multiplication_Table);
+                        TaskCycle(Task03MultiplicationTable);
                         break;
                     case '4':
-                        Print(Fit_Title("Task_04_Sum_Of_Numbers_In_Range"));
+                        Print(FitTitle("Task04SumOfNumbersInRange"));
                         Print("Tip: You need to enter two numbers separated by a comma sign to see the sum in their range.\n");
                         Print("Tip: start value must be less than end value.\n");
-                        Task_Cycle(Task_04_Sum_Of_Numbers_In_Range);
+                        TaskCycle(Task04SumOfNumbersInRange);
                         break;
                     case 'c':
                         Console.Clear();
@@ -69,39 +69,39 @@ namespace dotnet_intern_tasks
             Print("Exit...");
         }
 
-        public static string Task_01_Temperature_Converter(string input_value)
+        public static string Task01TemperatureConverter(string inputValue)
         {
-            double t_celsium;
-            double t_fahrenheit;
+            double tCelsium;
+            double tFahrenheit;
 
-            t_celsium = Convert.ToDouble(input_value);
+            tCelsium = Convert.ToDouble(inputValue);
 
-            t_fahrenheit = (t_celsium * 9 / 5) + 32;
+            tFahrenheit = (tCelsium * 9 / 5) + 32;
 
-            return $"{t_celsium}C{(char)176} = {t_fahrenheit}F{(char)176}\n";
+            return $"{tCelsium}C{(char)176} = {tFahrenheit}F{(char)176}\n";
         }
 
-        public static string Task_02_Age_Check(string input_value)
+        public static string Task02AgeCheck(string inputValue)
         {
-            byte age = Convert.ToByte(input_value);
-            string age_group;
+            byte age = Convert.ToByte(inputValue);
+            string ageGroup;
             string info = string.Empty;
 
             if (age < 10)
             {
-                age_group = "child";
+                ageGroup = "child";
             }
             else if (age < 18)
             {
-                age_group = "teenager";
+                ageGroup = "teenager";
             }
             else if (age < 80)
             {
-                age_group = "adult";
+                ageGroup = "adult";
             }
             else
             {
-                age_group = "adult with respectable age";
+                ageGroup = "adult with respectable age";
             }
 
             if (age > 122)
@@ -109,12 +109,12 @@ namespace dotnet_intern_tasks
                 info = "The oldest verified person in human history is Frenchwoman Jeanne Calment, who lived to be 122 years and 164 days old";
             }
 
-            return $"Person with age {age} years is {age_group}. {info}\n";
+            return $"Person with age {age} years is {ageGroup}. {info}\n";
         }
 
-        public static string Task_03_Multiplication_Table(string input_value)
+        public static string Task03MultiplicationTable(string inputValue)
         {
-            int num = Convert.ToInt32(input_value);
+            int num = Convert.ToInt32(inputValue);
             string res = string.Empty;
 
             for (short i = 1; i <= 10; i++)
@@ -125,10 +125,10 @@ namespace dotnet_intern_tasks
             return res + '\n';
         }
 
-        public static string Task_04_Sum_Of_Numbers_In_Range(string input_value)
+        public static string Task04SumOfNumbersInRange(string inputValue)
         {
             Regex regex = new Regex(@"^\s*(-?\d+)\s*,\s*(-?\d+)\s*$");
-            Match match = regex.Match(input_value);
+            Match match = regex.Match(inputValue);
 
             int start = int.Parse(match.Groups[1].Value);
             int end = int.Parse(match.Groups[2].Value);
@@ -143,9 +143,9 @@ namespace dotnet_intern_tasks
             return $"sum({start}, {end}) = {range.Sum()}\n";
         }
 
-        public static void Task_Cycle(Func<string, string> function)
+        public static void TaskCycle(Func<string, string> function)
         {
-            string input_data;
+            string inputData;
 
             do
             {
@@ -153,20 +153,20 @@ namespace dotnet_intern_tasks
 
                 try
                 {
-                    input_data = Console.ReadLine() ?? "";
+                    inputData = Console.ReadLine() ?? "";
 
-                    if (input_data.Equals("c"))
+                    if (inputData.Equals("c"))
                     {
                         Console.Clear();
                         continue;
                     }
-                    else if (input_data.Equals("e"))
+                    else if (inputData.Equals("e"))
                     {
                         Print("Back to main menu...\n\n");
                         break;
                     }
 
-                    Print(function(input_data));
+                    Print(function(inputData));
                 }
                 catch
                 {
@@ -180,7 +180,7 @@ namespace dotnet_intern_tasks
             Console.Write(s);
         }
 
-        public static string Fit_Title(string title)
+        public static string FitTitle(string title)
         {
             return $"-----{title.PadRight(40, '-')}\n";
         }

@@ -8,6 +8,7 @@ namespace dotnet_intern_tasks
         static void Main()
         {
             string option;
+
             do
             {
                 Print(Fit_Title("Main menu"));
@@ -147,6 +148,7 @@ namespace dotnet_intern_tasks
             do
             {
                 Print("Enter value ('c' to clear, 'e' to exit): ");
+                
                 try
                 {
                     input_data = Console.ReadLine() ?? "";

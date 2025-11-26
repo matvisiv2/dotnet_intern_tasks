@@ -7,18 +7,20 @@ namespace dotnet_intern_tasks
     {
         static void Main()
         {
+            string menu_info =
+                "1. Task_01_Temperature_Converter;\n" +
+                "2. Task_02_Age_Check;\n" +
+                "3. Task_03_Multiplication_Table;\n" +
+                "4. Task_04_Sum_Of_Numbers_In_Range;\n" +
+                "c. Clear console;\n" +
+                "e. Exit;\n";
+
             string option;
 
             do
             {
                 Print(Fit_Title("Main menu"));
-                Print("Choose option:\n");
-                Print("1. Task_01_Temperature_Converter;\n");
-                Print("2. Task_02_Age_Check;\n");
-                Print("3. Task_03_Multiplication_Table;\n");
-                Print("4. Task_04_Sum_Of_Numbers_In_Range;\n");
-                Print("c. Clear console;\n");
-                Print("e. Exit;\n\n");
+                Print(menu_info);
 
                 Print("Enter your choice: ");
 
@@ -48,7 +50,7 @@ namespace dotnet_intern_tasks
                         break;
                     case '4':
                         Print(Fit_Title("Task_04_Sum_Of_Numbers_In_Range"));
-                        Print("Tip: You need to enter two numbers separated by a comme sign to see the sum in their range.\n");
+                        Print("Tip: You need to enter two numbers separated by a comma sign to see the sum in their range.\n");
                         Print("Tip: start value must be less than end value.\n");
                         Task_Cycle(Task_04_Sum_Of_Numbers_In_Range);
                         break;
@@ -83,7 +85,7 @@ namespace dotnet_intern_tasks
         {
             byte age = Convert.ToByte(input_value);
             string age_group;
-            string info = "";
+            string info = string.Empty;
 
             if (age < 10)
             {
@@ -113,7 +115,7 @@ namespace dotnet_intern_tasks
         public static string Task_03_Multiplication_Table(string input_value)
         {
             int num = Convert.ToInt32(input_value);
-            string res = "";
+            string res = string.Empty;
 
             for (short i = 1; i <= 10; i++)
             {
@@ -148,17 +150,17 @@ namespace dotnet_intern_tasks
             do
             {
                 Print("Enter value ('c' to clear, 'e' to exit): ");
-                
+
                 try
                 {
                     input_data = Console.ReadLine() ?? "";
 
-                    if (string.Compare(input_data, "c") == 0)
+                    if (input_data.Equals("c"))
                     {
                         Console.Clear();
                         continue;
                     }
-                    else if (string.Compare(input_data, "e") == 0)
+                    else if (input_data.Equals("e"))
                     {
                         Print("Back to main menu...\n\n");
                         break;

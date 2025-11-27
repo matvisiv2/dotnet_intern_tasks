@@ -8,14 +8,14 @@ namespace dotnetInternTasks
         static void Main()
         {
             string menuInfo =
-                "1. Task01TemperatureConverter;\n" +
-                "2. Task02AgeCheck;\n" +
-                "3. Task03MultiplicationTable;\n" +
-                "4. Task04SumOfNumbersInRange;\n" +
-                "5. Task05ClassBook;\n" +
-                "6. Task06MinNumberOfArray;\n" +
-                "7. Task07Calculator;\n" +
-                "8. Task08ClassStudent;\n" +
+                "1. Task01: TemperatureConverter;\n" +
+                "2. Task02: AgeCheck;\n" +
+                "3. Task03: MultiplicationTable;\n" +
+                "4. Task04: SumOfNumbersInRange;\n" +
+                "5. Task05: ClassBook;\n" +
+                "6. Task06: MinNumberOfArray;\n" +
+                "7. Task07: Calculator;\n" +
+                "8. Task08: ClassStudent;\n" +
                 "c. Clear console;\n" +
                 "e. Exit;\n";
 
@@ -38,43 +38,43 @@ namespace dotnetInternTasks
                 switch (option[0])
                 {
                     case '1':
-                        Print(FitTitle("Task01TemperatureConverter(Celsius to Fahrenheit)"));
+                        Print(FitTitle("Task01: TemperatureConverter(Celsius to Fahrenheit)"));
                         Print("Tip: You need to enter the temperature in Celsius to convert it to Fahrenheit.\n");
                         TaskCycle(Task01TemperatureConverter);
                         break;
                     case '2':
-                        Print(FitTitle("Task02AgeCheck"));
+                        Print(FitTitle("Task02: Age Check"));
                         Print("Tip: You need to enter an age to see which age group the person belongs to.\n");
                         TaskCycle(Task02AgeCheck);
                         break;
                     case '3':
-                        Print(FitTitle("Task03MultiplicationTable"));
+                        Print(FitTitle("Task03: MultiplicationTable"));
                         Print("Tip: You need to enter some number to see its multiplication table.\n");
                         TaskCycle(Task03MultiplicationTable);
                         break;
                     case '4':
-                        Print(FitTitle("Task04SumOfNumbersInRange"));
+                        Print(FitTitle("Task04: SumOfNumbersInRange"));
                         Print("Tip: You need to enter two numbers separated by a comma sign to see the sum in their range.\n");
                         Print("Tip: start value must be less than end value.\n");
                         TaskCycle(Task04SumOfNumbersInRange);
                         break;
                     case '5':
-                        Print(FitTitle("Task05ClassBook"));
+                        Print(FitTitle("Task05: ClassBook"));
                         Print("Tip: You need to enter info about book in format: title, author, year.\n");
                         TaskCycle(Task05ClassBook);
                         break;
                     case '6':
-                        Print(FitTitle("Task06MinNumberOfArray"));
+                        Print(FitTitle("Task06: MinNumberOfArray"));
                         Print("Tip: You need to enter numbers separated by commas or just press enter to autogenerate an array.\n");
                         TaskCycle(Task06MinNumberOfArray);
                         break;
                     case '7':
-                        Print(FitTitle("Task07Calculator"));
+                        Print(FitTitle("Task07: Calculator"));
                         Print("Tip: You need to enter mathematical expression like (a+b,a-b,a*b,a/b).\n");
                         TaskCycle(Task07Calculator);
                         break;
                     case '8':
-                        Print(FitTitle("Task08ClassStudent"));
+                        Print(FitTitle("Task08: ClassStudent"));
                         Print("Tip: enter '1' - to show student list, '2 filter' - to filter, '3' - show the oldest of students.\n");
                         Print(
                             "Tip: 'filter' must be like '20', '>20', '<20':\n" +

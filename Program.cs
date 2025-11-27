@@ -14,6 +14,7 @@ namespace dotnetInternTasks
                 "4. Task04SumOfNumbersInRange;\n" +
                 "5. Task05ClassBook;\n" +
                 "6. Task06MinNumberOfArray;\n" +
+                "7. Task07Calculator;\n" +
                 "c. Clear console;\n" +
                 "e. Exit;\n";
 
@@ -58,13 +59,18 @@ namespace dotnetInternTasks
                         break;
                     case '5':
                         Print(FitTitle("Task05ClassBook"));
-                        Print("Tip: You have to enter info about book in format: title, author, year.\n");
+                        Print("Tip: You need to enter info about book in format: title, author, year.\n");
                         TaskCycle(Task05ClassBook);
                         break;
                     case '6':
                         Print(FitTitle("Task06MinNumberOfArray"));
-                        Print("Tip: You have to enter numbers separated by commas or just press enter to autogenerate an array.\n");
+                        Print("Tip: You need to enter numbers separated by commas or just press enter to autogenerate an array.\n");
                         TaskCycle(Task06MinNumberOfArray);
+                        break;
+                    case '7':
+                        Print(FitTitle("Task07Calculator"));
+                        Print("Tip: You need to enter mathematical expression like (a+b,a-b,a*b,a/b).\n");
+                        TaskCycle(Task07Calculator);
                         break;
                     case 'c':
                         Console.Clear();
@@ -201,6 +207,26 @@ namespace dotnetInternTasks
 
             return $"Min number is: {res}";
         }
+
+        public static string Task07Calculator(string inputValue)
+        {
+            Regex regex = new Regex(@"^\s*([+-]?\d+(?:,\d+)?)\s*([+\-*/])\s*([+-]?\d+(?:,\d+)?)\s*$");
+            Match match = regex.Match(inputValue);
+
+            double a = Convert.ToDouble(match.Groups[1].Value);
+            char operation = match.Groups[2].Value[0];
+            double b = Convert.ToDouble(match.Groups[3].Value);
+
+            return operation switch
+            {
+                '+' => $"{a + b}",
+                '-' => $"{a - b}",
+                '*' => $"{a * b}",
+                '/' => $"{a / b}",
+                _ => throw new Exception(),
+            };
+        }
+
         public static void TaskCycle(Func<string, string> function)
         {
             string inputData;

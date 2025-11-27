@@ -12,6 +12,7 @@ namespace dotnetInternTasks
                 "2. Task02AgeCheck;\n" +
                 "3. Task03MultiplicationTable;\n" +
                 "4. Task04SumOfNumbersInRange;\n" +
+                "5. Task05ClassBook;\n" +
                 "c. Clear console;\n" +
                 "e. Exit;\n";
 
@@ -53,6 +54,11 @@ namespace dotnetInternTasks
                         Print("Tip: You need to enter two numbers separated by a comma sign to see the sum in their range.\n");
                         Print("Tip: start value must be less than end value.\n");
                         TaskCycle(Task04SumOfNumbersInRange);
+                        break;
+                    case '5':
+                        Print(FitTitle("Task05ClassBook"));
+                        Print("Tip: You have to enter info about book in format: title, author, year.\n");
+                        TaskCycle(Task05ClassBook);
                         break;
                     case 'c':
                         Console.Clear();
@@ -141,6 +147,25 @@ namespace dotnetInternTasks
             int[] range = Enumerable.Range(start, end - start + 1).ToArray();
 
             return $"sum({start}, {end}) = {range.Sum()}\n";
+        }
+
+        public static string Task05ClassBook(string inputValue)
+        {
+            Regex regex = new Regex(@"^\s*(.+?)\s*,\s*(.+?)\s*,\s*(-*\d{1,4})\s*$");
+            Match match = regex.Match(inputValue);
+
+            if (!match.Success)
+            {
+                throw new Exception("doesn't match");
+            }
+
+            string title = match.Groups[1].Value.Trim();
+            string author = match.Groups[2].Value.Trim();
+            short year = Convert.ToInt16(match.Groups[3].Value.Trim());
+
+            Book book = new(title, author, year);
+            
+            return book.GetInfo();
         }
 
         public static void TaskCycle(Func<string, string> function)

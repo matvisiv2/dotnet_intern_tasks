@@ -15,6 +15,7 @@ namespace dotnetInternTasks
                 "5. Task05ClassBook;\n" +
                 "6. Task06MinNumberOfArray;\n" +
                 "7. Task07Calculator;\n" +
+                "8. Task08ClassStudent;\n" +
                 "c. Clear console;\n" +
                 "e. Exit;\n";
 
@@ -71,6 +72,17 @@ namespace dotnetInternTasks
                         Print(FitTitle("Task07Calculator"));
                         Print("Tip: You need to enter mathematical expression like (a+b,a-b,a*b,a/b).\n");
                         TaskCycle(Task07Calculator);
+                        break;
+                    case '8':
+                        Print(FitTitle("Task08ClassStudent"));
+                        Print("Tip: enter '1' - to show student list, '2 filter' - to filter, '3' - show the oldest of students.\n");
+                        Print(
+                            "Tip: 'filter' must be like '20', '>20', '<20':\n" +
+                            "  '20' - means students who is 20 years);\n" +
+                            "  '<20' - means students who younger than 20);\n" +
+                            "  '>20' - means students who older than 20).\n"
+                        );
+                        TaskCycle(Task08ClassStudent);
                         break;
                     case 'c':
                         Console.Clear();
@@ -227,6 +239,52 @@ namespace dotnetInternTasks
             };
         }
 
+        public static string Task08ClassStudent(string inputValue)
+        {
+            if (string.IsNullOrWhiteSpace(inputValue))
+            {
+                throw new Exception("you did not enter anything");
+            }
+
+            List<Student> students = new List<Student> {
+                new Student("Kindrat", "Vyshnevych", 18),
+                new Student("Ivasyk",  "Telesyk",    22),
+                new Student("Kyrylo",  "Kozhymyaka", 24),
+                new Student("Maryan",  "Byk",        19),
+                new Student("Oleh",    "Flyak",      20),
+                new Student("Mefodiy", "Ornamet",    17)
+            };
+
+            switch (inputValue[0])
+            {
+                case '1':
+                    return string.Join('\n', students);
+                case '2':
+                    Regex regex = new Regex(@"^\d\s([<>|=])(\d+)$");
+                    Match match = regex.Match(inputValue);
+
+                    if (!match.Success)
+                    {
+                        throw new Exception("Incorrect syntax. Correct could be: 2 >20, 2 <20, 2 =20");
+                    }
+
+                    char sign = match.Groups[1].Value[0];
+                    byte age = Convert.ToByte(match.Groups[2].Value);
+
+                    return sign switch
+                    {
+                        '>' => string.Join('\n', students.FindAll(student => student.Age > age)),
+                        '<' => string.Join('\n', students.FindAll(student => student.Age < age)),
+                        '=' => string.Join('\n', students.FindAll(student => student.Age == age)),
+                        _ => throw new Exception(),
+                    };
+                case '3':
+                    return students.MaxBy(student => student.Age).ToString();
+                default:
+                    throw new Exception();
+            }
+        }
+
         public static void TaskCycle(Func<string, string> function)
         {
             string inputData;
@@ -250,11 +308,15 @@ namespace dotnetInternTasks
                         break;
                     }
 
-                    Print(function(inputData) + '\n');
+                    string result = function(inputData);
+                    Print((string.IsNullOrWhiteSpace(result) ? "nothing" : result) + '\n');
                 }
-                catch
+                catch (Exception exception)
                 {
-                    Print("Incorrect value. Try again.\n");
+                    Print(
+                        "Incorrect value. Try again.\n" +
+                        $"Tip: {exception.Message}\n"
+                    );
                 }
             } while (true);
         }

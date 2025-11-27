@@ -8,6 +8,6 @@ class Book(string title, string author, short year)
 
     public string GetInfo()
     {
-        return $"title: {title}\nauthor: {author}\nyear: {year}\n";
+        return $"title: {title}\nauthor: {author}\nyear: {year}";
     }
 }

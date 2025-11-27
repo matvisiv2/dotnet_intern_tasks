@@ -13,6 +13,7 @@ namespace dotnetInternTasks
                 "3. Task03MultiplicationTable;\n" +
                 "4. Task04SumOfNumbersInRange;\n" +
                 "5. Task05ClassBook;\n" +
+                "6. Task06MinNumberOfArray;\n" +
                 "c. Clear console;\n" +
                 "e. Exit;\n";
 
@@ -59,6 +60,11 @@ namespace dotnetInternTasks
                         Print(FitTitle("Task05ClassBook"));
                         Print("Tip: You have to enter info about book in format: title, author, year.\n");
                         TaskCycle(Task05ClassBook);
+                        break;
+                    case '6':
+                        Print(FitTitle("Task06MinNumberOfArray"));
+                        Print("Tip: You have to enter numbers separated by commas or just press enter to autogenerate an array.\n");
+                        TaskCycle(Task06MinNumberOfArray);
                         break;
                     case 'c':
                         Console.Clear();
@@ -164,10 +170,37 @@ namespace dotnetInternTasks
             short year = Convert.ToInt16(match.Groups[3].Value.Trim());
 
             Book book = new(title, author, year);
-            
+
             return book.GetInfo();
         }
 
+        public static string Task06MinNumberOfArray(string inputValue)
+        {
+            int[] numbers;
+
+            if (string.IsNullOrWhiteSpace(inputValue))
+            {
+                numbers = generateRandomArray();
+                Print($"Array is: {ArrayToString(numbers)}");
+            }
+            else
+            {
+                numbers = inputValue
+                    .Replace(" ", "")
+                    .Split(',', StringSplitOptions.RemoveEmptyEntries)
+                    .Select(s => int.Parse(s.Trim()))
+                    .ToArray();
+            }
+
+            int res = numbers[0];
+
+            foreach (int i in numbers)
+            {
+                res = i < res ? i : res;
+            }
+
+            return $"Min number is: {res}";
+        }
         public static void TaskCycle(Func<string, string> function)
         {
             string inputData;
@@ -191,7 +224,7 @@ namespace dotnetInternTasks
                         break;
                     }
 
-                    Print(function(inputData));
+                    Print(function(inputData) + '\n');
                 }
                 catch
                 {
@@ -205,9 +238,30 @@ namespace dotnetInternTasks
             Console.Write(s);
         }
 
+        public static string ArrayToString(int[] arr)
+        {
+            return $"[{string.Join(", ", arr)}]";
+        }
+
         public static string FitTitle(string title)
         {
             return $"-----{title.PadRight(40, '-')}\n";
+        }
+
+        public static int[] generateRandomArray()
+        {
+            Random random = new Random();
+
+            byte length = (byte)random.Next(1, 10);
+
+            int[] res = new int[length];
+
+            for (byte i = 0; i < length; i++)
+            {
+                res[i] = random.Next(-1000, 1000);
+            }
+
+            return res;
         }
 
         public static void Delay()
